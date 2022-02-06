@@ -1,6 +1,7 @@
 import { plantList } from '../datas/plantList'
 import PlantItem from './PlantItem'
 import '../styles/ShoppingList.css'
+import { useEffect, useRef } from 'react'
 
 function ShoppingList({ cart, updateCart }) {
 	const categories = plantList.reduce(
@@ -42,6 +43,7 @@ function ShoppingList({ cart, updateCart }) {
 							price={price}
 						/>
 						<button onClick={() => addToCart(name, price)}>Ajouter</button>
+						<button onClick={() => updateCart(prevCart => prevCart - 1)}>Ajouter</button>
 					</div>
 				))}
 			</ul>
