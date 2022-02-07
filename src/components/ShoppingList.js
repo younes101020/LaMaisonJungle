@@ -25,6 +25,11 @@ function ShoppingList({ cart, updateCart }) {
 		}
 	}
 
+	const removeCart = (e) => {
+		let removeBlock = e.target.getAttribute("itemIdentifier")
+		updateCart(cart.filter(items => items.name !== removeBlock));
+	}
+
 	return (
 		<div className='lmj-shopping-list'>
 			<ul>
@@ -33,7 +38,7 @@ function ShoppingList({ cart, updateCart }) {
 				))}
 			</ul>
 			<ul className='lmj-plant-list'>
-				{plantList.map(({ id, cover, name, water, light, price }) => (
+				{plantList.map(({ id, cover, name, water, light, price, amount }) => (
 					<div key={id}>
 						<PlantItem
 							cover={cover}
@@ -43,7 +48,7 @@ function ShoppingList({ cart, updateCart }) {
 							price={price}
 						/>
 						<button onClick={() => addToCart(name, price)}>Ajouter</button>
-						<button onClick={() => updateCart(prevCart => prevCart - 1)}>Ajouter</button>
+						<button itemIdentifier={name} onClick={removeCart}>Retirer</button>
 					</div>
 				))}
 			</ul>
