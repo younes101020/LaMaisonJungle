@@ -34,7 +34,8 @@ function ShoppingList({ cart, updateCart }) {
 		let name = e.target.getAttribute("nameIdentifier")
 		let price = e.target.getAttribute("priceIdentifier")
 		const currentPlantSaveds = cart.find((plant) => plant.name === name)
-		const amountOutof = cart.find((plant) => plant.amount >= 1)
+		const newTab = cart.filter((plant) => plant.name === name)
+		const amountOutof = newTab.find((plant) => plant.amount > 1)
 		if (currentPlantSaveds && amountOutof) {
 			const arrWithoutPlant = cart.filter((plant) => plant.name !== name)
 			updateCart([
