@@ -25,10 +25,26 @@ function ShoppingList({ cart, updateCart }) {
 		}
 	}
 
+	/*cart.reduce(
+		(acc, plantType) => acc + plantType.amount - plantType.price,
+		0
+	)*/ 
+
 	const removeCart = (e) => {
-		let removeBlock = e.target.getAttribute("itemIdentifier")
-		updateCart(cart.filter(items => items.name !== removeBlock));
-	}
+		let name = e.target.getAttribute("nameIdentifier")
+		let price = e.target.getAttribute("priceIdentifier")
+		const currentPlantSaveds = cart.find((plant) => plant.name === name)
+		const amountOutof = cart.find((plant) => plant.amount >= 1)
+		if (currentPlantSaveds && amountOutof) {
+			const arrWithoutPlant = cart.filter((plant) => plant.name !== name)
+			updateCart([
+				...arrWithoutPlant,
+				{ name, price, amount: currentPlantSaveds.amount - 1 }
+			])} else {
+				const arrWithoutAll = cart.filter((plant) => plant.name !== name)
+				updateCart([...arrWithoutAll])
+			}
+	}	
 
 	return (
 		<div className='lmj-shopping-list'>
@@ -38,7 +54,7 @@ function ShoppingList({ cart, updateCart }) {
 				))}
 			</ul>
 			<ul className='lmj-plant-list'>
-				{plantList.map(({ id, cover, name, water, light, price, amount }) => (
+				{plantList.map(({ id, cover, name, water, light, price}) => (
 					<div key={id}>
 						<PlantItem
 							cover={cover}
@@ -48,7 +64,7 @@ function ShoppingList({ cart, updateCart }) {
 							price={price}
 						/>
 						<button onClick={() => addToCart(name, price)}>Ajouter</button>
-						<button itemIdentifier={name} onClick={removeCart}>Retirer</button>
+						<button nameIdentifier={name} priceIdentifier={price} onClick={removeCart}>Retirer</button>
 					</div>
 				))}
 			</ul>
