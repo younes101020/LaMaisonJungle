@@ -54,7 +54,7 @@ function ShoppingList({ cart, updateCart}) {
 
 			<ul className='lmj-plant-list'>
 				{plantList.map(({ id, cover, name, water, light, price, category }) => 
-					!cats || cats === category ? (
+					!cats || cats === category /*renvoyer que les plant qui ont la categorie spécifier par le state*/? (
 					<div key={id}>
 						<PlantItem
 							cover={cover}
