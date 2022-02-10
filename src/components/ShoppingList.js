@@ -4,8 +4,7 @@ import PlantItem from './PlantItem'
 import Categories  from './Categories'
 import '../styles/ShoppingList.css'
 
-function ShoppingList({ cart, updateCart}) {
-	const [cats, updateCats] = useState('')
+function ShoppingList({ cart, updateCart, cats, setCats }) {
 	const categories = plantList.reduce(
 		(acc, plant) =>
 			acc.includes(plant.category) ? acc : acc.concat(plant.category),
@@ -46,16 +45,16 @@ function ShoppingList({ cart, updateCart}) {
 
 	return (
 		<div className='lmj-shopping-list'>
-					<Categories
-						categories={categories}
-						cats={cats}
-						updateCats={updateCats}
+					<Categories 
+					categories={categories}
+					cats={cats}
+					setCats={setCats}
 					/>
 
 			<ul className='lmj-plant-list'>
-				{plantList.map(({ id, cover, name, water, light, price, category }) => 
-					!cats || cats === category /*renvoyer que les plant qui ont la categorie spécifier par le state*/? (
-					<div key={id}>
+				{plantList.map(({ id, cover, name, water, light, price, category }) =>
+				!cats  || cats === category ?
+					(<div key={id}>
 						<PlantItem
 							cover={cover}
 							name={name}

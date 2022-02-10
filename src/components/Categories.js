@@ -1,18 +1,19 @@
 import '../styles/Categories.css'
 
-function Categories({ categories, cats, updateCats }) {
+const Categories = ({categories, cats, setCats}) => {
     return (
         <div className='lmj-categories'>
-            <select
+                <select
                 value={cats}
-                onChange={(e) => updateCats(e.target.value)}
+                onChange={(e) => setCats(e.target.value)}
                 className='lmj-categories-select'
-            >
-                <option value=''>---</option>
-                {categories.map((cat) => <option key={cat} value={cat}>{cat}</option>
-                )}
-            </select>
-            <button onClick={() => updateCats('')}>Réinitialiser</button>
+                >
+                    <option value=''>----</option>
+                    {categories.map((cat) => (
+                        <option key={cat} value={cat}>{cat}</option>
+                    ))}
+                </select>
+                <button onClick={() => setCats('')}>Réinitialiser</button>
         </div>
     )
 }
