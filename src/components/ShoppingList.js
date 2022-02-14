@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { plantList } from '../datas/plantList'
 import PlantItem from './PlantItem'
 import Categories  from './Categories'
@@ -46,14 +45,14 @@ function ShoppingList({ cart, updateCart, cats, setCats }) {
 	return (
 		<div className='lmj-shopping-list'>
 					<Categories 
-					categories={categories}
 					cats={cats}
 					setCats={setCats}
-					/>
+					categories={categories}
+					 />
 
 			<ul className='lmj-plant-list'>
 				{plantList.map(({ id, cover, name, water, light, price, category }) =>
-				!cats  || cats === category ?
+				!cats || cats === category ?
 					(<div key={id}>
 						<PlantItem
 							cover={cover}
@@ -65,7 +64,7 @@ function ShoppingList({ cart, updateCart, cats, setCats }) {
 						<button onClick={() => addToCart(name, price)}>Ajouter</button>
 						<button nameIdentifier={name} priceIdentifier={price} onClick={removeCart}>Retirer</button>
 					</div>
-				) : null
+					) : null
 				)}
 			</ul>
 		</div>

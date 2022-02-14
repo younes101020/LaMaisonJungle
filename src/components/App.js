@@ -9,6 +9,7 @@ import '../styles/Layout.css'
 function App() {
 	const [cart, updateCart] = useState([])
 	const [cats, setCats] = useState('')
+	const [isFooterShown, updateIsFooterShown] = useState(true)
 	return (
 		<div>
 			<Banner>
@@ -16,10 +17,11 @@ function App() {
 				<h1 className='lmj-title'>La maison jungle</h1>
 			</Banner>
 			<div className='lmj-layout-inner'>
-				<Cart cart={cart} updateCart={updateCart} cats={cats} setCats={setCats} />
+				<Cart cart={cart} updateCart={updateCart} />
 				<ShoppingList cart={cart} updateCart={updateCart} cats={cats} setCats={setCats} />
 			</div>
-			<Footer />
+			<button onClick={() => updateIsFooterShown(!isFooterShown)}>Cacher</button>
+			{isFooterShown && <Footer />}
 		</div>
 	)
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useEffect } from 'react'
 import '../styles/Footer.css'
 
 function Footer() {
@@ -14,6 +15,10 @@ function Footer() {
 		}
 	}
 
+	useEffect(() => {
+		return () =>
+		console.log('Footer a été retirer du DOM !')
+	})
 	return (
 		<footer className='lmj-footer'>
 			<div className='lmj-footer-elem'>
