@@ -10,6 +10,7 @@ function App() {
 	const [cart, updateCart] = useState([])
 	const [cats, setCats] = useState('')
 	const [isFooterShown, updateIsFooterShown] = useState(true)
+
 	return (
 		<div>
 			<Banner>
@@ -20,7 +21,7 @@ function App() {
 				<Cart cart={cart} updateCart={updateCart} />
 				<ShoppingList cart={cart} updateCart={updateCart} cats={cats} setCats={setCats} />
 			</div>
-			<button onClick={() => updateIsFooterShown(!isFooterShown)}>Cacher</button>
+			<button onClick={() => updateIsFooterShown(!isFooterShown)}>{isFooterShown ? 'Cacher' : 'Ouvrir'}</button>
 			{isFooterShown && <Footer />}
 		</div>
 	)

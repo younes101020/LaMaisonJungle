@@ -1,5 +1,4 @@
-import { useState } from 'react'
-import { useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import '../styles/Footer.css'
 
 function Footer() {
@@ -16,8 +15,11 @@ function Footer() {
 	}
 
 	useEffect(() => {
+		const interval = setInterval(() => {
+			console.log('This will run every second!');
+		  }, 1000);
 		return () =>
-		console.log('Footer a été retirer du DOM !')
+		clearInterval(interval)
 	})
 	return (
 		<footer className='lmj-footer'>

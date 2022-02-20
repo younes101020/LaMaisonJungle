@@ -9,6 +9,17 @@ function Cart({ cart, updateCart }) {
 	)
 
 	useEffect(() => {
+		const data = localStorage.getItem('panier')
+		if (data) {
+			updateCart(JSON.parse(data))
+		}
+	}, [])
+
+	useEffect(() => {
+		localStorage.setItem('panier', JSON.stringify(cart))
+	})
+
+	useEffect(() => {
 		document.title = `LMJ: ${total}€ d'achats`
 	}, [total])
 
